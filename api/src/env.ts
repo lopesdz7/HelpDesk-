@@ -11,6 +11,7 @@ const envSchema = z.object({
   JWT_EXPIRES_IN: z.string().default('1d'),
   CORS_ORIGIN: z.string().default('*'),
   TZ_BUSINESS: z.string().default('America/Sao_Paulo'),
+  UPLOADS_DIR: z.string().optional(),
 })
 
 const parsed = envSchema.safeParse(process.env)

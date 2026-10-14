@@ -14,3 +14,4 @@ api/uploads/*
 .claude/settings.local.json
 api/.pgdata/
 api/src/generated/
+api/tmp/
