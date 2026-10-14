@@ -47,6 +47,34 @@ Todas usam a senha `123456`.
 
 O seed não faz nada se `admin@test.com` já existir (pode ser rodado de novo sem duplicar dados).
 
+## API
+
+Base local: `http://localhost:3333`. Todas as rotas, exceto `POST /sessions` e `POST /users`, exigem `Authorization: Bearer <token>`.
+
+| Método | Rota | Acesso |
+|---|---|---|
+| POST | `/sessions` | público |
+| POST | `/users` | público (cadastro de cliente) |
+| GET / PUT / DELETE | `/profile` | autenticado (DELETE só cliente) |
+| PATCH | `/profile/password` | autenticado |
+| PATCH / DELETE | `/profile/avatar` | autenticado (multipart, campo `avatar`) |
+| GET / POST | `/technicians` | admin |
+| GET / PUT | `/technicians/:id` | admin |
+| GET | `/clients` | admin |
+| PUT / DELETE | `/clients/:id` | admin |
+| GET | `/services` | autenticado (cliente vê só ativos; `?active=` para os demais) |
+| POST / PUT | `/services`, `/services/:id` | admin |
+| PATCH | `/services/:id/status` | admin |
+| GET | `/tickets` | todos (escopo por papel; `?status=`) |
+| GET | `/tickets/:id` | dono, técnico atribuído ou admin |
+| POST | `/tickets` | cliente |
+| PATCH | `/tickets/:id/status` | técnico atribuído ou admin |
+| POST | `/tickets/:id/additional-services` | técnico atribuído |
+| DELETE | `/tickets/:id/additional-services/:serviceId` | técnico atribuído |
+| GET | `/uploads/:file` | estático |
+
+As listagens aceitam `?page=&perPage=` (padrão 1 e 10, máximo 100) e respondem `{ data, meta: { page, perPage, total, totalPages } }`. Os erros seguem o formato `{ message, issues? }`. Os chamados vêm com `servicePrice` (preço do serviço na abertura), `additionalTotal` e `total`, já calculados.
+
 ## Decisões
 
 Pontos que o briefing não define, resolvidos pela opção mais simples:
@@ -66,3 +94,5 @@ Pontos que o briefing não define, resolvidos pela opção mais simples:
 13. **Disponibilidade**: blocos com início entre 07:00 e 22:00. Na grade do front: manhã 07–12, tarde 13–18, noite 19–22.
 14. **Valores dos serviços no seed** (o briefing não define): softwares R$ 120, hardwares R$ 180, vírus R$ 150, impressoras R$ 90, periféricos R$ 80, conectividade R$ 110, backup R$ 200, otimização do SO R$ 130, VPN R$ 160.
 15. **Testes**: o `globalSetup` aplica as migrations com `prisma migrate deploy` no banco de teste e cada suíte limpa as tabelas com `TRUNCATE`. Não usamos `migrate reset`.
+16. **Sem técnicos cadastrados**: a criação de chamado responde 503 ("Nenhum técnico cadastrado"), já que não há a quem atribuir.
+17. **Métricas do admin**: são obtidas por `GET /tickets?status=<x>&perPage=1` (lendo `meta.total`), sem criar uma rota extra fora do briefing.

@@ -5,6 +5,7 @@ import { profileRoutes } from './profileRoutes'
 import { servicesRoutes } from './servicesRoutes'
 import { sessionsRoutes } from './sessionsRoutes'
 import { techniciansRoutes } from './techniciansRoutes'
+import { ticketsRoutes } from './ticketsRoutes'
 import { usersRoutes } from './usersRoutes'
 
 export const routes = Router()
@@ -22,3 +23,4 @@ routes.use('/profile', ensureAuthenticated, profileRoutes)
 routes.use('/technicians', ensureAuthenticated, techniciansRoutes)
 routes.use('/clients', ensureAuthenticated, clientsRoutes)
 routes.use('/services', ensureAuthenticated, servicesRoutes)
+routes.use('/tickets', ensureAuthenticated, ticketsRoutes)
