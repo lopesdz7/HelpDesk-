@@ -1,0 +1,170 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens do Figma "Plataforma de Chamados (Community)".
+ * Reconstruídos sem o MCP do Figma — conferir contra o arquivo quando ele estiver conectado.
+ * A paleta padrão do Tailwind é zerada: só existem as cores abaixo.
+ */
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+
+  /* Escala de cinzas (100 = mais escuro) */
+  --color-gray-100: #151619;
+  --color-gray-200: #1e2024;
+  --color-gray-300: #535964;
+  --color-gray-400: #858b99;
+  --color-gray-500: #e3e5e8;
+  --color-gray-600: #f9fafa;
+
+  /* Marca */
+  --color-blue-dark: #2e3da3;
+  --color-blue-base: #5165e1;
+  --color-blue-light: #8996eb;
+
+  /* Feedback e status */
+  --color-danger: #d03e3e;
+  --color-open: #cc3d6a;
+  --color-progress: #355ec5;
+  --color-done: #508b26;
+
+  /*
+   * Ajustes de acessibilidade (AA ≥ 4.5:1) sobre os valores do Figma:
+   * texto dos badges sobre o fundo tingido e placeholder (gray-400 dá 3.4:1 no branco).
+   */
+  --color-open-ink: #a3305a;
+  --color-progress-ink: #355ec5;
+  --color-done-ink: #3d6b1c;
+  --color-muted: #676d7b; /* gray-400 escurecido: placeholders e rótulos secundários sobre fundo claro */
+
+  /* Tipografia: uma família só, escala fixa (produto, não marketing) */
+  --font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif;
+
+  --text-*: initial;
+  --text-xxs: 0.625rem;
+  --text-xxs--line-height: 1.4;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.4;
+  --text-md: 1rem;
+  --text-md--line-height: 1.4;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.4;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.4;
+
+  /* Raios */
+  --radius-*: initial;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.3125rem; /* botões e inputs */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem; /* cards */
+  --radius-xl: 1.25rem; /* área de conteúdo e painéis */
+  --radius-full: 9999px;
+
+  /* Sombras: deslocamento + blur suave, tingidas do cinza mais escuro */
+  --shadow-*: initial;
+  --shadow-sm: 0 1px 2px rgb(21 22 25 / 0.06);
+  --shadow-md: 0 6px 16px -4px rgb(21 22 25 / 0.12);
+  --shadow-lg: 0 24px 48px -12px rgb(21 22 25 / 0.28);
+
+  --breakpoint-md: 48rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-status-flip: status-flip 420ms var(--ease-out-expo);
+  --animate-shimmer: shimmer 1.4s ease-in-out infinite;
+
+  @keyframes status-flip {
+    0% {
+      transform: perspective(240px) rotateX(-90deg);
+      opacity: 0;
+    }
+    100% {
+      transform: perspective(240px) rotateX(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-gray-100 font-sans text-sm text-gray-200 antialiased;
+    font-feature-settings: 'tnum' 0;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-blue-base) 28%, transparent);
+    color: var(--color-gray-100);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue-base);
+    outline-offset: 2px;
+  }
+
+  input,
+  textarea,
+  select {
+    caret-color: var(--color-blue-base);
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
+
+  /* Barras de rolagem no tom da interface */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray-500) transparent;
+  }
+
+  [data-theme='dark'] * {
+    scrollbar-color: var(--color-gray-300) transparent;
+  }
+
+  dialog::backdrop {
+    background-color: rgb(21 22 25 / 0.5);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Rótulo dos campos: xxs, maiúsculo, negrito — como no Figma */
+@utility field-label {
+  font-size: var(--text-xxs);
+  line-height: var(--text-xxs--line-height);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
