@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T19:43:06.352Z",
+  "title": "Design System: HelpDesk",
+  "extensions": {
+    "provenance": "Tokens reconstruídos do Figma \"Plataforma de Chamados (Community)\" sem o MCP do Figma; conferir quando conectado. Fonte normativa: web/src/styles/index.css. Paleta padrão do Tailwind zerada.",
+    "colorMeta": {
+      "white": {
+        "role": "neutral",
+        "displayName": "Branco",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "gray-100": {
+        "role": "neutral",
+        "displayName": "Grafite Shell",
+        "canonical": "#151619",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "gray-200": {
+        "role": "neutral",
+        "displayName": "Grafite Texto",
+        "canonical": "#1e2024",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "gray-300": {
+        "role": "neutral",
+        "displayName": "Cinza Ardósia",
+        "canonical": "#535964",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "gray-400": {
+        "role": "neutral",
+        "displayName": "Cinza Névoa",
+        "canonical": "#858b99",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "gray-500": {
+        "role": "neutral",
+        "displayName": "Cinza Hairline",
+        "canonical": "#e3e5e8",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "gray-600": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "canonical": "#f9fafa",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Cinza Legível (ajuste AA)",
+        "canonical": "#676d7b",
+        "tonalRamp": [
+          "#151619",
+          "#1e2024",
+          "#535964",
+          "#676d7b",
+          "#858b99",
+          "#e3e5e8",
+          "#f9fafa",
+          "#ffffff"
+        ]
+      },
+      "blue-dark": {
+        "role": "primary",
+        "displayName": "Azul Balcão",
+        "canonical": "#2e3da3",
+        "tonalRamp": [
+          "oklch(15% 0.160 272)",
+          "oklch(25% 0.160 272)",
+          "oklch(35% 0.160 272)",
+          "oklch(45% 0.160 272)",
+          "oklch(55% 0.160 272)",
+          "oklch(65% 0.160 272)",
+          "oklch(80% 0.072 272)",
+          "oklch(95% 0.072 272)"
+        ]
+      },
+      "blue-base": {
+        "role": "primary",
+        "displayName": "Azul Sinal",
+        "canonical": "#5165e1",
+        "tonalRamp": [
+          "oklch(15% 0.190 272)",
+          "oklch(25% 0.190 272)",
+          "oklch(35% 0.190 272)",
+          "oklch(45% 0.190 272)",
+          "oklch(55% 0.190 272)",
+          "oklch(65% 0.190 272)",
+          "oklch(80% 0.086 272)",
+          "oklch(95% 0.086 272)"
+        ]
+      },
+      "blue-light": {
+        "role": "primary",
+        "displayName": "Azul Papel-carbono",
+        "canonical": "#8996eb",
+        "tonalRamp": [
+          "oklch(15% 0.120 274)",
+          "oklch(25% 0.120 274)",
+          "oklch(35% 0.120 274)",
+          "oklch(45% 0.120 274)",
+          "oklch(55% 0.120 274)",
+          "oklch(65% 0.120 274)",
+          "oklch(80% 0.054 274)",
+          "oklch(95% 0.054 274)"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Vermelho Alerta",
+        "canonical": "#d03e3e",
+        "tonalRamp": [
+          "oklch(15% 0.180 25)",
+          "oklch(25% 0.180 25)",
+          "oklch(35% 0.180 25)",
+          "oklch(45% 0.180 25)",
+          "oklch(55% 0.180 25)",
+          "oklch(65% 0.180 25)",
+          "oklch(80% 0.081 25)",
+          "oklch(95% 0.081 25)"
+        ]
+      },
+      "open": {
+        "role": "tertiary",
+        "displayName": "Rosa Aberto",
+        "canonical": "#cc3d6a",
+        "tonalRamp": [
+          "oklch(15% 0.180 5)",
+          "oklch(25% 0.180 5)",
+          "oklch(35% 0.180 5)",
+          "oklch(45% 0.180 5)",
+          "oklch(55% 0.180 5)",
+          "oklch(65% 0.180 5)",
+          "oklch(80% 0.081 5)",
+          "oklch(95% 0.081 5)"
+        ]
+      },
+      "open-ink": {
+        "role": "tertiary",
+        "displayName": "Tinta Aberto (ajuste AA)",
+        "canonical": "#a3305a",
+        "tonalRamp": [
+          "oklch(15% 0.160 5)",
+          "oklch(25% 0.160 5)",
+          "oklch(35% 0.160 5)",
+          "oklch(45% 0.160 5)",
+          "oklch(55% 0.160 5)",
+          "oklch(65% 0.160 5)",
+          "oklch(80% 0.072 5)",
+          "oklch(95% 0.072 5)"
+        ]
+      },
+      "progress": {
+        "role": "tertiary",
+        "displayName": "Azul Atendimento",
+        "canonical": "#355ec5",
+        "tonalRamp": [
+          "oklch(15% 0.170 265)",
+          "oklch(25% 0.170 265)",
+          "oklch(35% 0.170 265)",
+          "oklch(45% 0.170 265)",
+          "oklch(55% 0.170 265)",
+          "oklch(65% 0.170 265)",
+          "oklch(80% 0.077 265)",
+          "oklch(95% 0.077 265)"
+        ]
+      },
+      "progress-ink": {
+        "role": "tertiary",
+        "displayName": "Tinta Atendimento (igual a progress)",
+        "canonical": "#355ec5",
+        "tonalRamp": [
+          "oklch(15% 0.170 265)",
+          "oklch(25% 0.170 265)",
+          "oklch(35% 0.170 265)",
+          "oklch(45% 0.170 265)",
+          "oklch(55% 0.170 265)",
+          "oklch(65% 0.170 265)",
+          "oklch(80% 0.077 265)",
+          "oklch(95% 0.077 265)"
+        ]
+      },
+      "done": {
+        "role": "tertiary",
+        "displayName": "Verde Encerrado",
+        "canonical": "#508b26",
+        "tonalRamp": [
+          "oklch(15% 0.140 135)",
+          "oklch(25% 0.140 135)",
+          "oklch(35% 0.140 135)",
+          "oklch(45% 0.140 135)",
+          "oklch(55% 0.140 135)",
+          "oklch(65% 0.140 135)",
+          "oklch(80% 0.063 135)",
+          "oklch(95% 0.063 135)"
+        ]
+      },
+      "done-ink": {
+        "role": "tertiary",
+        "displayName": "Tinta Encerrado (ajuste AA)",
+        "canonical": "#3d6b1c",
+        "tonalRamp": [
+          "oklch(15% 0.120 135)",
+          "oklch(25% 0.120 135)",
+          "oklch(35% 0.120 135)",
+          "oklch(45% 0.120 135)",
+          "oklch(55% 0.120 135)",
+          "oklch(65% 0.120 135)",
+          "oklch(80% 0.054 135)",
+          "oklch(95% 0.054 135)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline 24",
+        "purpose": "Título de página no desktop (blue-dark)."
+      },
+      "title": {
+        "displayName": "Title 20",
+        "purpose": "Título de página no mobile, wordmark, total do canhoto, contadores."
+      },
+      "title-sm": {
+        "displayName": "Title 16",
+        "purpose": "Títulos de card, modal e estado vazio; texto digitado em inputs (400)."
+      },
+      "body": {
+        "displayName": "Body 14",
+        "purpose": "Corpo, células, botões, navegação."
+      },
+      "body-sm": {
+        "displayName": "Body 12",
+        "purpose": "Metadados, badges, erros e dicas, linhas do resumo de valores."
+      },
+      "label": {
+        "displayName": "Label 10",
+        "purpose": "Rótulo de campo e legenda de fieldset, maiúsculo negrito; subtítulo do papel no logo."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sm",
+        "value": "0 1px 2px rgb(21 22 25 / 0.06)",
+        "purpose": "Disponível no tema; sem uso recorrente."
+      },
+      {
+        "name": "md",
+        "value": "0 6px 16px -4px rgb(21 22 25 / 0.12)",
+        "purpose": "Toasts."
+      },
+      {
+        "name": "lg",
+        "value": "0 24px 48px -12px rgb(21 22 25 / 0.28)",
+        "purpose": "Modais, menu móvel e menu do usuário."
+      },
+      {
+        "name": "modal-backdrop",
+        "value": "rgb(21 22 25 / 0.5); backdrop-filter: blur(2px)",
+        "purpose": "Fundo do <dialog> aberto."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid var(--color-blue-base); outline-offset: 2px",
+        "purpose": "Foco visível global; blue-light sobre o shell escuro."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Curva dos movimentos de mudança de estado."
+      },
+      {
+        "name": "status-flip",
+        "value": "420ms ease-out-expo; perspective(240px) rotateX(-90deg) -> 0, opacity 0 -> 1",
+        "purpose": "Badge de status, só quando o status muda."
+      },
+      {
+        "name": "total-bump",
+        "value": "520ms ease-out-expo; translateY(-6px) scale(1.08) blur(1px) cor blue-dark -> repouso",
+        "purpose": "Total do TicketValueStub \"carimbado\" só quando o valor muda."
+      },
+      {
+        "name": "shimmer",
+        "value": "1.4s ease-in-out infinite; opacity 1 -> 0.45 -> 1",
+        "purpose": "Skeletons de carregamento."
+      },
+      {
+        "name": "color-transition",
+        "value": "150ms (botões, campos), 200ms (cards de filtro)",
+        "purpose": "Hover e estados."
+      },
+      {
+        "name": "tilt",
+        "value": "até 6°, spring stiffness 220 damping 20, perspective 800px, brilho radial branco 55%",
+        "purpose": "Cards de filtro do admin; só com ponteiro fino e sem reduced-motion."
+      },
+      {
+        "name": "3d-gate",
+        "value": "React.lazy + fallback estático; desligado em prefers-reduced-motion, < 768px, GPU por software, <= 2 núcleos ou <= 2 GB",
+        "purpose": "Painel de marca do login/cadastro e objeto do estado vazio."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation/transition-duration 0.01ms",
+        "purpose": "Global."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal: grafite com texto branco, canto 5px.",
+      "html": "<button class=\"ds-btn ds-btn-primary\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M12 5v14M5 12h14\"/></svg>Novo chamado</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:var(--radius-sm,5px);font-family:Lato,ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background-color 150ms,color 150ms}.ds-btn-primary{background:var(--color-gray-200,#1e2024);color:var(--color-white,#fff)}.ds-btn-primary:hover,.ds-btn-primary:active{background:var(--color-gray-100,#151619)}.ds-btn:focus-visible{outline:2px solid var(--color-blue-base,#5165e1);outline-offset:2px}.ds-btn:disabled{opacity:.5;pointer-events:none}"
+    },
+    {
+      "name": "Botão secundário",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação secundária e padrão dos botões só de ícone.",
+      "html": "<button class=\"ds-btn2\">Cancelar</button>",
+      "css": ".ds-btn2{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:var(--radius-sm,5px);background:var(--color-gray-500,#e3e5e8);color:var(--color-gray-200,#1e2024);font-family:Lato,ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background-color 150ms,color 150ms}.ds-btn2:hover{background:rgb(227 229 232 / .7);color:var(--color-gray-100,#151619)}.ds-btn2:focus-visible{outline:2px solid var(--color-blue-base,#5165e1);outline-offset:2px}"
+    },
+    {
+      "name": "Campo sublinhado",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Rótulo 10px maiúsculo + controle só com borda inferior.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Título</span><input class=\"ds-input\" placeholder=\"Digite um título para o chamado\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:4px;font-family:Lato,ui-sans-serif,system-ui,sans-serif}.ds-field-label{font-size:10px;line-height:1.4;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--color-gray-300,#535964);transition:color 150ms}.ds-field:focus-within .ds-field-label{color:var(--color-blue-base,#5165e1)}.ds-input{height:40px;border:0;border-bottom:1px solid var(--color-gray-500,#e3e5e8);background:transparent;font:inherit;font-size:16px;color:var(--color-gray-200,#1e2024);outline:none;transition:border-color 150ms}.ds-input::placeholder{color:var(--color-muted,#676d7b)}.ds-input:hover{border-bottom-color:var(--color-gray-400,#858b99)}.ds-input:focus{border-bottom-color:var(--color-blue-base,#5165e1)}"
+    },
+    {
+      "name": "Badge de status",
+      "kind": "chip",
+      "refersTo": "status-badge",
+      "description": "Pílula tingida com ícone + texto; flip 3D só na mudança.",
+      "html": "<span class=\"ds-badge ds-badge-open\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01\"/></svg>Aberto</span> <span class=\"ds-badge ds-badge-progress\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4-2\"/></svg>Em atendimento</span> <span class=\"ds-badge ds-badge-done\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M21.8 10A10 10 0 1 1 17 3.3\"/><path d=\"m9 11 3 3L22 4\"/></svg>Encerrado</span>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:9999px;font-family:Lato,ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:700;white-space:nowrap}.ds-badge-open{background:rgb(204 61 106 / .12);color:var(--color-open-ink,#a3305a)}.ds-badge-progress{background:rgb(53 94 197 / .12);color:var(--color-progress-ink,#355ec5)}.ds-badge-done{background:rgb(80 139 38 / .12);color:var(--color-done-ink,#3d6b1c)}"
+    },
+    {
+      "name": "Card de chamado",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Card hairline de 10px; a borda escurece no hover e no foco interno.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-code\">#00004</span><h3 class=\"ds-card-title\">Rede lenta</h3><p class=\"ds-card-meta\">Instalação de rede</p><div class=\"ds-card-row\"><span>13/04/25 20:56</span><strong>R$ 200,00</strong></div></article>",
+      "css": ".ds-card{display:flex;flex-direction:column;gap:4px;padding:20px;border:1px solid var(--color-gray-500,#e3e5e8);border-radius:var(--radius-lg,10px);background:var(--color-gray-600,#f9fafa);font-family:Lato,ui-sans-serif,system-ui,sans-serif;color:var(--color-gray-200,#1e2024);transition:border-color 150ms}.ds-card:hover,.ds-card:focus-within{border-color:var(--color-gray-400,#858b99)}.ds-code{font-size:12px;font-weight:700;color:var(--color-gray-300,#535964);font-variant-numeric:tabular-nums}.ds-card-title{margin:0;font-size:16px;font-weight:700}.ds-card-meta{margin:0;font-size:12px;color:var(--color-gray-300,#535964)}.ds-card-row{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;font-variant-numeric:tabular-nums;color:var(--color-gray-300,#535964)}.ds-card-row strong{color:var(--color-gray-200,#1e2024)}"
+    },
+    {
+      "name": "Navegação lateral",
+      "kind": "nav",
+      "refersTo": "nav-item-active",
+      "description": "Sidebar escura de 200px; item ativo em blue-dark.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item is-active\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 5h18M3 12h18M3 19h18\"/></svg>Chamados</a><a class=\"ds-nav-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21a8 8 0 0 1 16 0\"/></svg>Técnicos</a></nav>",
+      "css": ".ds-nav{display:flex;flex-direction:column;gap:4px;width:200px;padding:20px 16px;background:var(--color-gray-100,#151619);font-family:Lato,ui-sans-serif,system-ui,sans-serif}.ds-nav-item{display:flex;align-items:center;gap:12px;height:44px;padding:0 16px;border-radius:var(--radius-md,8px);font-size:14px;color:var(--color-gray-400,#858b99);text-decoration:none;transition:background-color 150ms,color 150ms}.ds-nav-item:hover{background:var(--color-gray-200,#1e2024);color:var(--color-gray-500,#e3e5e8)}.ds-nav-item.is-active{background:var(--color-blue-dark,#2e3da3);color:var(--color-gray-600,#f9fafa)}.ds-nav-item:focus-visible{outline:2px solid var(--color-blue-light,#8996eb);outline-offset:2px}"
+    },
+    {
+      "name": "Ticket Value Stub",
+      "kind": "custom",
+      "refersTo": "ticket-value-stub-total",
+      "description": "Assinatura: resumo de valores como canhoto, com notches reais e tracejado.",
+      "html": "<section class=\"ds-stub\"><div class=\"ds-stub-body\"><h3>Valores</h3><div class=\"ds-stub-line\"><span><b>Preço base</b><br><i>Instalação de rede</i></span><span>R$ 180,00</span></div><div class=\"ds-stub-line ds-stub-add\"><span>Cabo extra</span><span>R$ 20,00</span></div></div><div class=\"ds-stub-perf\"><span class=\"ds-notch ds-notch-l\"></span><span class=\"ds-notch ds-notch-r\"></span><div class=\"ds-dash\"></div></div><div class=\"ds-stub-total\"><span>Total</span><strong>R$ 200,00</strong></div></section>",
+      "css": ".ds-stub{position:relative;max-width:320px;border:1px solid var(--color-gray-500,#e3e5e8);border-radius:var(--radius-lg,10px);background:var(--color-gray-600,#f9fafa);font-family:Lato,ui-sans-serif,system-ui,sans-serif;font-size:12px;color:var(--color-gray-200,#1e2024)}.ds-stub-body{display:flex;flex-direction:column;gap:12px;padding:20px 20px 24px}.ds-stub-body h3{margin:0;font-size:12px;font-weight:700;color:var(--color-muted,#676d7b)}.ds-stub-line{display:flex;justify-content:space-between;gap:16px;font-variant-numeric:tabular-nums}.ds-stub-line i{font-style:normal;color:var(--color-gray-300,#535964)}.ds-stub-add{border-top:1px solid var(--color-gray-500,#e3e5e8);padding-top:12px}.ds-stub-perf{position:relative;height:0}.ds-notch{position:absolute;top:50%;z-index:1;width:28px;height:28px;transform:translateY(-50%);border:1px solid var(--color-gray-500,#e3e5e8);border-radius:9999px;background:var(--color-gray-600,#f9fafa)}.ds-notch-l{left:-14px;clip-path:inset(0 0 0 50%)}.ds-notch-r{right:-14px;clip-path:inset(0 50% 0 0)}.ds-dash{margin:0 14px;border-top:2px dashed var(--color-gray-500,#e3e5e8)}.ds-stub-total{display:flex;align-items:center;justify-content:space-between;padding:24px 20px 20px;border-radius:0 0 10px 10px;background:rgb(46 61 163 / .06)}.ds-stub-total span{font-size:14px;font-weight:700;color:var(--color-blue-dark,#2e3da3)}.ds-stub-total strong{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Balcão de Chamados",
+    "overview": "O HelpDesk se lê como a fila de um balcão de suporte: um shell escuro e fixo (sidebar gray-100) segura uma área de trabalho clara e recortada (gray-600, com o canto superior-esquerdo de 20px descolado da sidebar), e o próprio chamado é tratado como um ticket físico com picote. O ticket é o único motivo ornamental do sistema e aparece em três escalas: a marca (LogoMark), o resumo de valores do detalhe (TicketValueStub) e o ticket 3D/SVG do painel de login.\n\nFora do ticket, o sistema é ferramenta de trabalho: uma família tipográfica, escala fixa de seis passos, bordas hairline gray-500, tabelas densas e badges de status com ícone e texto. Densidade alta, decoração zero nas listas e formulários. Recusa o dashboard genérico de cards iguais com métricas-herói: os totais por status do admin existem, mas são o filtro da tabela, não um enfeite.\n\nA camada 3D é um acento opcional, nunca uma dependência: carregada sob demanda, sempre com equivalente estático, e desligada onde não ajuda.",
+    "keyCharacteristics": [
+      "Shell escuro fixo + área de conteúdo clara com canto de 20px.",
+      "Lato em uma família só, escala fixa 10/12/14/16/20/24, tudo com line-height 1.4.",
+      "Inputs sublinhados com rótulo xxs maiúsculo em negrito.",
+      "Bordas hairline gray-500 no lugar de sombra; sombra só em camadas flutuantes.",
+      "Assinatura: o picote do ticket (recortes semicirculares + tracejado).",
+      "Status sempre por ícone + texto em pílula tingida."
+    ],
+    "rules": [
+      {
+        "name": "A Regra da Tinta",
+        "body": "Cor de status nunca é usada como texto no valor do Figma: fundo tingido usa open/progress/done, texto e ícone usam a variante -ink (AA ≥ 4.5:1 sobre o tingido). Os ajustes -ink e muted ficam por cima dos valores do Figma, não os substituem.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Paleta Fechada",
+        "body": "Não existe cor fora desta lista: a paleta do Tailwind está zerada. Variações vêm de opacidade sobre um token (`/6`, `/12`, `/15`, `/30`), nunca de um hex novo.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Azul de Foco",
+        "body": "blue-base sinaliza interação (foco, caret, seleção, campo ativo). Preenchimento de marca é blue-dark.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Escala Fixa",
+        "body": "Só existem os seis passos (10/12/14/16/20/24); a escala do Tailwind está zerada. Nada de clamp(), nada de display maior que 24px.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra dos Números Tabulares",
+        "body": "Código do chamado (`#00004`), valores em BRL, datas e contagens usam algarismos tabulares; o corpo não.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Hairline",
+        "body": "Card, tabela, canhoto e estado vazio se separam por borda gray-500 de 1px, nunca por sombra. Se precisa de sombra, é porque flutua.",
+        "section": "elevation"
+      },
+      {
+        "name": "A Regra do 3D Opcional",
+        "body": "Toda peça 3D é carregada sob demanda (React.lazy, three fora do bundle inicial), tem um equivalente estático exibido no Suspense e no error boundary, e fica desligada com `prefers-reduced-motion`, abaixo de 768px e em GPU por software ou aparelho fraco (≤ 2 núcleos ou ≤ 2 GB). O 3D WebGL existe só no painel de marca do login/cadastro e no objeto do estado vazio, nunca junto de linhas de dados.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar só os tokens de cor listados; variações por opacidade sobre um token.",
+      "Do mostrar status sempre com ícone + texto, em pílula tingida a 12% com texto -ink.",
+      "Do separar superfícies na área clara com hairline gray-500 de 1px; sombra só em modal, menu e toast.",
+      "Do usar inputs sublinhados com rótulo de 10px maiúsculo negrito acima.",
+      "Do usar algarismos tabulares em códigos, valores, datas e contagens.",
+      "Do dar a toda peça 3D carregamento sob demanda, fallback estático e desligamento em reduced-motion, < 768px e GPU por software.",
+      "Do animar badge e total só quando o valor muda, nunca no primeiro render.",
+      "Do reservar a forma de ticket com picote para a marca, o resumo de valores e o painel de login."
+    ],
+    "donts": [
+      "Don't introduzir cores da paleta padrão do Tailwind ou hex avulsos; ela está zerada.",
+      "Don't usar open, progress ou done como cor de texto; use a variante -ink.",
+      "Don't criar tamanhos de fonte fora de 10/12/14/16/20/24 nem uma segunda família.",
+      "Don't colocar 3D WebGL junto de linhas de dados, tabelas ou formulários.",
+      "Don't inclinar cards além de 6° nem aplicar tilt fora dos cards de filtro do admin.",
+      "Don't preencher botões com blue-base; ele é a cor de foco.",
+      "Don't fazer da linha de cards de métrica um enfeite: se existir, ela filtra o conteúdo abaixo."
+    ]
+  }
+}

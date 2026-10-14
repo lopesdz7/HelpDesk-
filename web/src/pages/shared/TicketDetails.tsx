@@ -64,16 +64,22 @@ export function TicketDetails() {
         actions={<TicketStatusActions ticket={ticket} role={user.role} />}
       />
 
+      {/*
+        Abaixo de lg as colunas viram "contents" e a ordem prioriza o valor:
+        informações → valores → serviços adicionais → técnico.
+      */}
       <div className="grid gap-4 md:gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="flex flex-col gap-4 md:gap-6">
+        <div className="contents lg:flex lg:flex-col lg:gap-6">
           <TicketInfoCard ticket={ticket} />
           {user.role === 'technician' && (
-            <AdditionalServicesCard ticket={ticket} editable={canEditServices} />
+            <div className="max-lg:order-3">
+              <AdditionalServicesCard ticket={ticket} editable={canEditServices} />
+            </div>
           )}
         </div>
 
-        <div className="flex flex-col gap-4 md:gap-6">
-          <Card className="flex flex-col gap-4">
+        <div className="contents lg:flex lg:flex-col lg:gap-6">
+          <Card className="flex flex-col gap-4 max-lg:order-4">
             <CardLabel>Técnico responsável</CardLabel>
             <div className="flex items-center gap-3">
               <Avatar name={ticket.technician.name} avatar={ticket.technician.avatar} size="lg" />
@@ -85,6 +91,7 @@ export function TicketDetails() {
           </Card>
 
           <TicketValueStub
+            className="max-lg:order-2"
             basePrice={ticket.servicePrice}
             serviceTitle={ticket.service.title}
             additionalServices={ticket.additionalServices}
@@ -113,11 +120,11 @@ function TicketInfoCard({ ticket }: { ticket: Ticket }) {
 
       <dl className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <CardLabel>Descrição</CardLabel>
+          <CardLabel as="dt">Descrição</CardLabel>
           <dd className="mt-1 text-sm whitespace-pre-line text-gray-200">{ticket.description}</dd>
         </div>
         <div className="sm:col-span-2">
-          <CardLabel>Categoria</CardLabel>
+          <CardLabel as="dt">Categoria</CardLabel>
           <dd className="mt-1 text-sm text-gray-200">
             {ticket.service.title}
             {!ticket.service.active && (
@@ -126,15 +133,15 @@ function TicketInfoCard({ ticket }: { ticket: Ticket }) {
           </dd>
         </div>
         <div>
-          <CardLabel>Criado em</CardLabel>
+          <CardLabel as="dt">Criado em</CardLabel>
           <dd className="tabular mt-1 text-sm text-gray-200">{formatDate(ticket.createdAt)}</dd>
         </div>
         <div>
-          <CardLabel>Atualizado em</CardLabel>
+          <CardLabel as="dt">Atualizado em</CardLabel>
           <dd className="tabular mt-1 text-sm text-gray-200">{formatDate(ticket.updatedAt)}</dd>
         </div>
         <div className="sm:col-span-2">
-          <CardLabel>Cliente</CardLabel>
+          <CardLabel as="dt">Cliente</CardLabel>
           <dd className="mt-2 flex items-center gap-2 text-sm text-gray-200">
             <Avatar name={ticket.client.name} avatar={ticket.client.avatar} size="sm" />
             {ticket.client.name}

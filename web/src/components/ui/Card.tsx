@@ -8,6 +8,15 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
 }
 
 /** Título pequeno de seção dentro de um card (ex.: "Técnico responsável"). */
-export function CardLabel({ children, className }: { children: ReactNode; className?: string }) {
-  return <h3 className={cn('text-xs font-bold text-muted', className)}>{children}</h3>
+export function CardLabel({
+  children,
+  className,
+  as: Tag = 'h3',
+}: {
+  children: ReactNode
+  className?: string
+  /** "dt" dentro de listas de definição (<dl>). */
+  as?: 'h3' | 'dt'
+}) {
+  return <Tag className={cn('text-xs font-bold text-muted', className)}>{children}</Tag>
 }

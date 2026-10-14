@@ -52,7 +52,7 @@ export function ClientTickets() {
         />
       ) : (
         <>
-          <TicketTable tickets={query.data.data} />
+          <TicketTable tickets={query.data.data} role="client" />
           <Pagination meta={query.data.meta} onChange={setPage} />
         </>
       )}

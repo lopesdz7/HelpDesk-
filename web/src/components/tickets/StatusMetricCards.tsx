@@ -1,5 +1,5 @@
 import { useQueries } from '@tanstack/react-query'
-import { CircleCheckBig, CircleHelp, Clock2 } from 'lucide-react'
+import { Check, CircleCheckBig, CircleHelp, Clock2, Layers } from 'lucide-react'
 import { TiltCard } from '@/components/three/TiltCard'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { cn } from '@/lib/cn'
@@ -7,21 +7,42 @@ import { queryKeys } from '@/lib/queryKeys'
 import type { TicketStatus } from '@/lib/types'
 import { ticketsService } from '@/services'
 
-const LABELS: Record<TicketStatus, string> = {
-  open: 'Abertos',
-  in_progress: 'Em atendimento',
-  closed: 'Encerrados',
+type Option = {
+  status?: TicketStatus
+  label: string
+  icon: typeof CircleHelp
+  tone: string
+  selected: string
 }
 
-const STATUSES: { status: TicketStatus; icon: typeof CircleHelp; tone: string; ring: string }[] = [
-  { status: 'open', icon: CircleHelp, tone: 'text-open-ink bg-open/12', ring: 'ring-open' },
+const OPTIONS: Option[] = [
+  {
+    label: 'Todos',
+    icon: Layers,
+    tone: 'text-gray-200 bg-gray-500',
+    selected: 'border-gray-200 bg-gray-500/40',
+  },
+  {
+    status: 'open',
+    label: 'Abertos',
+    icon: CircleHelp,
+    tone: 'text-open-ink bg-open/12',
+    selected: 'border-open bg-open/6',
+  },
   {
     status: 'in_progress',
+    label: 'Em atendimento',
     icon: Clock2,
     tone: 'text-progress-ink bg-progress/12',
-    ring: 'ring-progress',
+    selected: 'border-progress bg-progress/6',
   },
-  { status: 'closed', icon: CircleCheckBig, tone: 'text-done-ink bg-done/12', ring: 'ring-done' },
+  {
+    status: 'closed',
+    label: 'Encerrados',
+    icon: CircleCheckBig,
+    tone: 'text-done-ink bg-done/12',
+    selected: 'border-done bg-done/6',
+  },
 ]
 
 type StatusMetricCardsProps = {
@@ -30,57 +51,62 @@ type StatusMetricCardsProps = {
 }
 
 /**
- * Totais por status (admin). Cada card também é o filtro da tabela abaixo:
- * clicar de novo no card ativo limpa o filtro.
+ * Totais por status (admin) que também são o filtro da tabela logo abaixo.
+ * Cada card inclina levemente no hover (TiltCard); o selecionado fica marcado.
  */
 export function StatusMetricCards({ selected, onSelect }: StatusMetricCardsProps) {
   const counts = useQueries({
-    queries: STATUSES.map(({ status }) => ({
-      queryKey: queryKeys.ticketCount(status),
+    queries: OPTIONS.map(({ status }) => ({
+      queryKey: status ? queryKeys.ticketCount(status) : (['tickets', 'count', 'all'] as const),
       queryFn: () => ticketsService.list({ status, perPage: 1 }).then((r) => r.meta.total),
     })),
   })
 
   return (
-    <div role="group" aria-label="Filtrar por status" className="grid grid-cols-3 gap-2 md:gap-4">
-      {STATUSES.map(({ status, icon: Icon, tone, ring }, index) => {
-        const count = counts[index]
-        const active = selected === status
-        return (
-          <TiltCard key={status}>
-            <button
-              type="button"
-              aria-pressed={active}
-              onClick={() => onSelect(active ? undefined : status)}
-              className={cn(
-                'flex h-full w-full flex-col gap-3 rounded-lg border bg-gray-600 p-3 text-left transition-[border-color,box-shadow] duration-200 md:flex-row md:items-center md:gap-4 md:p-5',
-                active
-                  ? cn('border-transparent ring-2', ring)
-                  : 'border-gray-500 hover:border-gray-400',
-              )}
-            >
-              <span
+    <fieldset>
+      <legend className="field-label mb-2 text-gray-300">Filtrar por status</legend>
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
+        {OPTIONS.map((option, index) => {
+          const count = counts[index]
+          const active = selected === option.status
+          const Icon = option.icon
+          return (
+            <TiltCard key={option.label}>
+              <button
+                type="button"
+                aria-pressed={active}
+                onClick={() => onSelect(option.status)}
                 className={cn(
-                  'flex size-9 shrink-0 items-center justify-center rounded-full md:size-11',
-                  tone,
+                  'flex h-full w-full items-center gap-3 rounded-lg border p-3 text-left transition-colors duration-200 md:p-4',
+                  active ? option.selected : 'border-gray-500 bg-gray-600 hover:border-gray-400',
                 )}
               >
-                <Icon className="size-5" aria-hidden />
-              </span>
-              <span className="flex flex-col">
-                {count?.isPending ? (
-                  <Skeleton className="my-1 h-6 w-8" />
-                ) : (
-                  <span className="tabular text-xl leading-tight font-bold text-gray-200">
-                    {count?.data ?? '–'}
+                <span
+                  className={cn(
+                    'flex size-9 shrink-0 items-center justify-center rounded-full',
+                    option.tone,
+                  )}
+                >
+                  <Icon className="size-4.5" aria-hidden />
+                </span>
+                <span className="flex min-w-0 flex-1 items-baseline gap-x-2 max-md:flex-wrap">
+                  {count?.isPending ? (
+                    <Skeleton className="h-5 w-6" />
+                  ) : (
+                    <span className="tabular text-lg leading-none font-bold text-gray-200">
+                      {count?.data ?? '–'}
+                    </span>
+                  )}
+                  <span className="text-sm leading-tight text-gray-300 md:truncate">
+                    {option.label}
                   </span>
-                )}
-                <span className="text-xs text-gray-300">{LABELS[status]}</span>
-              </span>
-            </button>
-          </TiltCard>
-        )
-      })}
-    </div>
+                </span>
+                {active && <Check className="size-4 shrink-0 text-gray-200" aria-hidden />}
+              </button>
+            </TiltCard>
+          )
+        })}
+      </div>
+    </fieldset>
   )
 }

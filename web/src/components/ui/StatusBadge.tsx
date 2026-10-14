@@ -18,8 +18,6 @@ const icons: Record<TicketStatus, typeof CircleHelp> = {
 
 type StatusBadgeProps = {
   status: TicketStatus
-  /** "compact" esconde o texto abaixo de md (o ícone segue distinto por status e o texto fica para leitores de tela). */
-  compact?: boolean
   className?: string
 }
 
@@ -27,7 +25,7 @@ type StatusBadgeProps = {
  * Badge de status com ícone + texto. Quando o status muda, o badge faz um flip 3D em CSS
  * (só na mudança, não no primeiro render; desligado em reduced-motion).
  */
-export function StatusBadge({ status, compact = false, className }: StatusBadgeProps) {
+export function StatusBadge({ status, className }: StatusBadgeProps) {
   const [previous, setPrevious] = useState(status)
   const [flips, setFlips] = useState(0)
 
@@ -44,13 +42,12 @@ export function StatusBadge({ status, compact = false, className }: StatusBadgeP
       className={cn(
         'inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full px-2 text-xs font-bold whitespace-nowrap [transform-origin:center_top]',
         flips > 0 && 'motion-safe:animate-status-flip',
-        compact && 'max-md:w-7 max-md:justify-center max-md:px-0',
         styles[status],
         className,
       )}
     >
       <Icon className="size-4" aria-hidden />
-      <span className={cn(compact && 'max-md:sr-only')}>{STATUS_LABEL[status]}</span>
+      <span>{STATUS_LABEL[status]}</span>
     </span>
   )
 }

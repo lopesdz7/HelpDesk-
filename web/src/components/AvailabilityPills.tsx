@@ -21,14 +21,14 @@ export function AvailabilityPills({ hours, max, className }: AvailabilityPillsPr
       {visible.map((hour) => (
         <li
           key={hour}
-          className="tabular flex h-7 items-center rounded-full border border-gray-500 px-3 text-xs font-bold text-gray-300"
+          className="tabular flex h-7 items-center rounded-full bg-blue-dark/10 px-3 text-xs font-bold text-blue-dark"
         >
           {hour}
         </li>
       ))}
       {rest > 0 && (
         <li
-          className="tabular flex h-7 items-center rounded-full border border-gray-500 px-3 text-xs font-bold text-gray-300"
+          className="tabular flex h-7 items-center rounded-full bg-blue-dark/10 px-3 text-xs font-bold text-blue-dark"
           aria-label={`e mais ${rest} horários`}
         >
           +{rest}

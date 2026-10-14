@@ -75,7 +75,7 @@ export function AdminTickets() {
             />
           ) : (
             <>
-              <TicketTable tickets={query.data.data} showClient />
+              <TicketTable tickets={query.data.data} role="admin" showClient />
               <Pagination meta={query.data.meta} onChange={setPage} />
             </>
           )}

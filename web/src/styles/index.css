@@ -77,6 +77,20 @@
 
   --animate-status-flip: status-flip 420ms var(--ease-out-expo);
   --animate-shimmer: shimmer 1.4s ease-in-out infinite;
+  --animate-total-bump: total-bump 520ms var(--ease-out-expo);
+
+  /* Total "carimbado" quando um adicional altera o valor */
+  @keyframes total-bump {
+    0% {
+      transform: translateY(-6px) scale(1.08);
+      color: var(--color-blue-dark);
+      filter: blur(1px);
+    }
+    100% {
+      transform: none;
+      filter: none;
+    }
+  }
 
   @keyframes status-flip {
     0% {
@@ -135,10 +149,6 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--color-gray-500) transparent;
-  }
-
-  [data-theme='dark'] * {
-    scrollbar-color: var(--color-gray-300) transparent;
   }
 
   dialog::backdrop {

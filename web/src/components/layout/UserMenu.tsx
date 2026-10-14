@@ -26,7 +26,6 @@ export function UserMenu({ variant }: UserMenuProps) {
     <div ref={containerRef} className="relative">
       <button
         type="button"
-        aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={variant === 'topbar' ? `Menu do usuário: ${user.name}` : undefined}
@@ -48,7 +47,7 @@ export function UserMenu({ variant }: UserMenuProps) {
       {open && (
         <div
           id={menuId}
-          role="menu"
+          role="group"
           aria-label="Opções"
           className={cn(
             'absolute z-30 w-[min(calc(100vw-2rem),12.5rem)] rounded-lg bg-gray-100 px-5 py-4 shadow-lg ring-1 ring-gray-200',
@@ -60,7 +59,6 @@ export function UserMenu({ variant }: UserMenuProps) {
           <p className="field-label mb-2 text-gray-400">Opções</p>
           <button
             type="button"
-            role="menuitem"
             autoFocus
             onClick={() => {
               setOpen(false)
@@ -73,7 +71,6 @@ export function UserMenu({ variant }: UserMenuProps) {
           </button>
           <button
             type="button"
-            role="menuitem"
             onClick={signOut}
             className="flex w-full items-center gap-2 rounded-sm py-2 text-md text-danger hover:brightness-125"
           >

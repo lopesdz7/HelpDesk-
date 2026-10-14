@@ -5,8 +5,23 @@ import { formatCurrency, formatDate, formatTicketCode } from '@/lib/format'
 import type { Ticket, UserRole } from '@/lib/types'
 import { TicketStatusActions } from './TicketStatusActions'
 
-/** Card de chamado da fila do técnico: o título leva ao detalhe, a ação rápida muda o status. */
-export function TicketCard({ ticket, role }: { ticket: Ticket; role: UserRole }) {
+type TicketCardProps = {
+  ticket: Ticket
+  role: UserRole
+  /** Quem aparece no rodapé: o cliente (fila do técnico) ou o técnico (visão do cliente). */
+  person?: 'client' | 'technician'
+  /** Ações rápidas de status no rodapé (fila do técnico). */
+  showActions?: boolean
+}
+
+/** Card de chamado: o título leva ao detalhe; opcionalmente, a ação rápida muda o status. */
+export function TicketCard({
+  ticket,
+  role,
+  person = 'client',
+  showActions = true,
+}: TicketCardProps) {
+  const shown = ticket[person]
   return (
     <article className="relative flex flex-col gap-4 rounded-lg border border-gray-500 p-5 transition-colors focus-within:border-gray-400 hover:border-gray-400">
       <header className="flex items-start justify-between gap-3">
@@ -24,7 +39,7 @@ export function TicketCard({ ticket, role }: { ticket: Ticket; role: UserRole })
           </h3>
           <p className="truncate text-xs text-gray-300">{ticket.service.title}</p>
         </div>
-        <StatusBadge status={ticket.status} compact />
+        <StatusBadge status={ticket.status} />
       </header>
 
       <div className="flex items-center justify-between gap-3 text-xs">
@@ -34,13 +49,18 @@ export function TicketCard({ ticket, role }: { ticket: Ticket; role: UserRole })
 
       <footer className="flex items-center justify-between gap-3 border-t border-gray-500 pt-4">
         <span className="flex min-w-0 items-center gap-2 text-sm text-gray-200">
-          <Avatar name={ticket.client.name} avatar={ticket.client.avatar} size="sm" />
-          <span className="truncate">{ticket.client.name}</span>
+          <Avatar name={shown.name} avatar={shown.avatar} size="sm" />
+          <span className="truncate">
+            <span className="sr-only">{person === 'client' ? 'Cliente: ' : 'Técnico: '}</span>
+            {shown.name}
+          </span>
         </span>
         {/* Acima do link "esticado" do título, para continuar clicável. */}
-        <span className="relative z-10 flex gap-2">
-          <TicketStatusActions ticket={ticket} role={role} size="sm" />
-        </span>
+        {showActions && (
+          <span className="relative z-10 flex gap-2">
+            <TicketStatusActions ticket={ticket} role={role} size="sm" />
+          </span>
+        )}
       </footer>
     </article>
   )

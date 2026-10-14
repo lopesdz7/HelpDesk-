@@ -2,9 +2,14 @@ import type { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from 'react'
 import { cn } from '@/lib/cn'
 
 /** Tabela dentro de um card com borda — cabeçalho cinza discreto, linhas com hairline. */
-export function Table({ className, children, ...props }: HTMLAttributes<HTMLTableElement>) {
+export function Table({
+  className,
+  wrapperClassName,
+  children,
+  ...props
+}: HTMLAttributes<HTMLTableElement> & { wrapperClassName?: string }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-500">
+    <div className={cn('overflow-x-auto rounded-lg border border-gray-500', wrapperClassName)}>
       <table className={cn('w-full border-collapse text-left text-sm', className)} {...props}>
         {children}
       </table>

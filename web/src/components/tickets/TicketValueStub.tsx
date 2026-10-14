@@ -1,5 +1,5 @@
 import { Trash2 } from 'lucide-react'
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { IconButton } from '@/components/ui/Button'
 import { cn } from '@/lib/cn'
 import { formatCurrency } from '@/lib/format'
@@ -17,14 +17,19 @@ type TicketValueStubProps = {
   className?: string
 }
 
-/** Recorte semicircular do picote — cobre a borda do card e desenha o arco. */
+/**
+ * Recorte do picote: um semicírculo na cor do fundo da página que cobre a borda do card
+ * (o card fica de fato "aberto" ali) e desenha só o arco interno.
+ */
 function Notch({ side }: { side: 'left' | 'right' }) {
   return (
     <span
       aria-hidden
       className={cn(
-        'absolute top-1/2 size-5 -translate-y-1/2 rounded-full border border-gray-500 bg-gray-600',
-        side === 'left' ? '-left-2.5' : '-right-2.5',
+        'absolute top-1/2 z-10 size-7 -translate-y-1/2 rounded-full border border-gray-500 bg-gray-600',
+        side === 'left'
+          ? '-left-3.5 [clip-path:inset(0_0_0_50%)]'
+          : '-right-3.5 [clip-path:inset(0_50%_0_0)]',
       )}
     />
   )
@@ -32,7 +37,7 @@ function Notch({ side }: { side: 'left' | 'right' }) {
 
 /**
  * Assinatura do produto: o resumo de valores como o canhoto de um ticket.
- * Serviço base e adicionais em cima, picote, e o total destacado embaixo.
+ * Serviço base e adicionais em cima, picote, e o total destacado no canhoto.
  */
 export function TicketValueStub({
   basePrice,
@@ -44,10 +49,18 @@ export function TicketValueStub({
   footer,
   className,
 }: TicketValueStubProps) {
+  // Conta as mudanças de total para "carimbar" o valor novo (só quando muda).
+  const [lastTotal, setLastTotal] = useState(total)
+  const [bumps, setBumps] = useState(0)
+  if (total !== lastTotal) {
+    setLastTotal(total)
+    setBumps((count) => count + 1)
+  }
+
   return (
     <section
       aria-label="Valores do chamado"
-      className={cn('relative overflow-hidden rounded-lg border border-gray-500', className)}
+      className={cn('relative rounded-lg border border-gray-500', className)}
     >
       <div className="flex flex-col gap-4 px-5 pt-5 pb-6 md:px-6">
         <h3 className="text-xs font-bold text-muted">Valores</h3>
@@ -88,16 +101,26 @@ export function TicketValueStub({
         </dl>
       </div>
 
-      {/* Picote */}
+      {/* Picote: recortes nas bordas e tracejado ligando um ao outro */}
       <div className="relative h-0">
         <Notch side="left" />
         <Notch side="right" />
-        <div className="mx-4 border-t-2 border-dashed border-gray-500" />
+        <div className="mx-3.5 border-t-2 border-dashed border-gray-500" />
       </div>
 
-      <div className="flex items-center justify-between gap-4 px-5 pt-6 pb-5 md:px-6">
-        <span className="text-sm font-bold text-gray-200">Total</span>
-        <strong className="tabular text-lg font-bold text-gray-200">{formatCurrency(total)}</strong>
+      {/* Canhoto */}
+      <div className="flex items-center justify-between gap-4 rounded-b-lg bg-blue-dark/6 px-5 pt-6 pb-5 md:px-6">
+        <span className="text-sm font-bold text-blue-dark">Total</span>
+        <strong
+          key={bumps}
+          aria-live="polite"
+          className={cn(
+            'tabular text-xl font-bold text-gray-200',
+            bumps > 0 && 'motion-safe:animate-total-bump',
+          )}
+        >
+          {formatCurrency(total)}
+        </strong>
       </div>
       {footer && <div className="px-5 pb-5 md:px-6">{footer}</div>}
     </section>

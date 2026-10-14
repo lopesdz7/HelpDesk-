@@ -105,11 +105,11 @@ export function NewTicket() {
 
           <dl className="flex flex-col gap-4">
             <div>
-              <CardLabel>Categoria de serviço</CardLabel>
+              <CardLabel as="dt">Categoria de serviço</CardLabel>
               <dd className="mt-1 text-sm text-gray-200">{selected?.title ?? '—'}</dd>
             </div>
             <div>
-              <CardLabel>Custo inicial</CardLabel>
+              <CardLabel as="dt">Custo inicial</CardLabel>
               <dd className="tabular mt-1 text-xl font-bold text-gray-200" aria-live="polite">
                 {selected ? formatCurrency(selected.price) : 'R$ —'}
               </dd>

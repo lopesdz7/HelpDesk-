@@ -5,80 +5,94 @@ import { buttonClasses } from '@/components/ui/buttonStyles'
 import { StatusBadge } from '@/components/ui/StatusBadge'
 import { Table, Td, Th, Tr } from '@/components/ui/Table'
 import { formatCurrency, formatDate, formatTicketCode, shortName } from '@/lib/format'
-import type { Ticket } from '@/lib/types'
+import type { Ticket, UserRole } from '@/lib/types'
+import { TicketCard } from './TicketCard'
 
 type TicketTableProps = {
   tickets: Ticket[]
+  role: UserRole
   /** Admin vê a coluna de cliente; o cliente não precisa dela. */
   showClient?: boolean
 }
 
-export function TicketTable({ tickets, showClient = false }: TicketTableProps) {
+export function TicketTable({ tickets, role, showClient = false }: TicketTableProps) {
   const navigate = useNavigate()
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          <Th className="w-20 max-md:whitespace-normal md:w-28">Atualizado em</Th>
-          <Th className="w-20 max-md:hidden">Id</Th>
-          <Th>Título e serviço</Th>
-          <Th className="text-right max-lg:hidden">Valor total</Th>
-          {showClient && <Th className="max-xl:hidden">Cliente</Th>}
-          <Th className="max-lg:hidden">Técnico</Th>
-          <Th>Status</Th>
-          <Th className="w-10 md:w-12">
-            <span className="sr-only">Ações</span>
-          </Th>
-        </tr>
-      </thead>
-      <tbody>
+    <>
+      {/* Mobile: cards empilhados, com valor, técnico e status completos. */}
+      <ul className="flex flex-col gap-3 md:hidden">
         {tickets.map((ticket) => (
-          <Tr
-            key={ticket.id}
-            className="cursor-pointer"
-            onClick={(event) => {
-              // A linha inteira abre o detalhe; o link da última coluna é o alvo acessível.
-              if ((event.target as HTMLElement).closest('a,button')) return
-              navigate(`/tickets/${ticket.id}`)
-            }}
-          >
-            <Td className="tabular text-xs md:whitespace-nowrap">{formatDate(ticket.updatedAt)}</Td>
-            <Td className="tabular text-xs font-bold max-md:hidden">
-              {formatTicketCode(ticket.code)}
-            </Td>
-            <Td>
-              <span className="line-clamp-2 font-bold md:line-clamp-1">{ticket.title}</span>
-              <span className="line-clamp-1 text-xs text-gray-300">{ticket.service.title}</span>
-            </Td>
-            <Td className="tabular text-right whitespace-nowrap max-lg:hidden">
-              {formatCurrency(ticket.total)}
-            </Td>
-            {showClient && (
-              <Td className="max-xl:hidden">
-                <PersonCell name={ticket.client.name} avatar={ticket.client.avatar} />
-              </Td>
-            )}
-            <Td className="max-lg:hidden">
-              <PersonCell name={ticket.technician.name} avatar={ticket.technician.avatar} />
-            </Td>
-            <Td>
-              <StatusBadge status={ticket.status} compact />
-            </Td>
-            <Td>
-              <Link
-                to={`/tickets/${ticket.id}`}
-                aria-label={`Ver chamado ${formatTicketCode(ticket.code)}: ${ticket.title}`}
-                title="Ver detalhes"
-                className={buttonClasses({ variant: 'secondary', size: 'sm', iconOnly: true })}
-              >
-                <Eye aria-hidden />
-              </Link>
-            </Td>
-          </Tr>
+          <li key={ticket.id}>
+            <TicketCard ticket={ticket} role={role} person="technician" showActions={false} />
+          </li>
         ))}
-      </tbody>
-    </Table>
+      </ul>
+      <Table wrapperClassName="max-md:hidden">
+        <thead>
+          <tr>
+            <Th className="w-20 max-md:whitespace-normal md:w-28">Atualizado em</Th>
+            <Th className="w-20 max-md:hidden">Id</Th>
+            <Th>Título e serviço</Th>
+            <Th className="text-right max-lg:hidden">Valor total</Th>
+            {showClient && <Th className="max-xl:hidden">Cliente</Th>}
+            <Th className="max-lg:hidden">Técnico</Th>
+            <Th>Status</Th>
+            <Th className="w-10 md:w-12">
+              <span className="sr-only">Ações</span>
+            </Th>
+          </tr>
+        </thead>
+        <tbody>
+          {tickets.map((ticket) => (
+            <Tr
+              key={ticket.id}
+              className="cursor-pointer"
+              onClick={(event) => {
+                // A linha inteira abre o detalhe; o link da última coluna é o alvo acessível.
+                if ((event.target as HTMLElement).closest('a,button')) return
+                navigate(`/tickets/${ticket.id}`)
+              }}
+            >
+              <Td className="tabular text-xs md:whitespace-nowrap">
+                {formatDate(ticket.updatedAt)}
+              </Td>
+              <Td className="tabular text-xs font-bold max-md:hidden">
+                {formatTicketCode(ticket.code)}
+              </Td>
+              <Td>
+                <span className="line-clamp-2 font-bold md:line-clamp-1">{ticket.title}</span>
+                <span className="line-clamp-1 text-xs text-gray-300">{ticket.service.title}</span>
+              </Td>
+              <Td className="tabular text-right whitespace-nowrap max-lg:hidden">
+                {formatCurrency(ticket.total)}
+              </Td>
+              {showClient && (
+                <Td className="max-xl:hidden">
+                  <PersonCell name={ticket.client.name} avatar={ticket.client.avatar} />
+                </Td>
+              )}
+              <Td className="max-lg:hidden">
+                <PersonCell name={ticket.technician.name} avatar={ticket.technician.avatar} />
+              </Td>
+              <Td>
+                <StatusBadge status={ticket.status} />
+              </Td>
+              <Td>
+                <Link
+                  to={`/tickets/${ticket.id}`}
+                  aria-label={`Ver chamado ${formatTicketCode(ticket.code)}: ${ticket.title}`}
+                  title="Ver detalhes"
+                  className={buttonClasses({ variant: 'secondary', size: 'sm', iconOnly: true })}
+                >
+                  <Eye aria-hidden />
+                </Link>
+              </Td>
+            </Tr>
+          ))}
+        </tbody>
+      </Table>
+    </>
   )
 }
 
