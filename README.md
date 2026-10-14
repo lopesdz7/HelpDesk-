@@ -7,7 +7,45 @@ Aplicação full-stack com três perfis (Administrador, Técnico e Cliente). A e
 | [`api/`](api/) | Node.js + Express + Prisma (PostgreSQL) + Zod + JWT + Jest |
 | [`web/`](web/) | Vite + React + TypeScript + TailwindCSS |
 
-> Em construção. As instruções de execução local, as contas de teste e os links de deploy serão adicionados ao longo das fases.
+> Em construção. Os links de deploy e os prints serão adicionados ao fim do projeto.
+
+## Executando localmente
+
+Pré-requisitos: Node.js 22+ e Docker.
+
+```bash
+# 1. Banco de dados (PostgreSQL 16, cria também o banco helpdesk_test)
+docker compose up -d
+
+# 2. API
+cd api
+cp .env.example .env
+cp .env.test.example .env.test
+npm install            # também roda `prisma generate`
+npm run db:migrate     # aplica as migrations
+npm run db:seed        # popula com dados de exemplo
+npm run dev            # http://localhost:3333
+
+# Testes (usam o banco helpdesk_test)
+npm test
+```
+
+**Sem Docker?** Rode `npm run db:local` em `api/`. Ele sobe um PostgreSQL 16 embutido (pacote `embedded-postgres`) em `localhost:5432`, já com os bancos `helpdesk` e `helpdesk_test`, e os demais passos são os mesmos.
+
+### Contas de teste (seed)
+
+Todas usam a senha `123456`.
+
+| Perfil | E-mail | Observação |
+|---|---|---|
+| Admin | admin@test.com | |
+| Técnico | carlos.silva@test.com | 08–12 e 14–18 |
+| Técnico | ana.oliveira@test.com | 10–14 e 16–20 |
+| Técnico | lucas.martins@test.com | 12–16 e 18–22 |
+| Cliente | andre.costa@test.com | |
+| Cliente | julia.maria@test.com | |
+
+O seed não faz nada se `admin@test.com` já existir (pode ser rodado de novo sem duplicar dados).
 
 ## Decisões
 
@@ -26,3 +64,5 @@ Pontos que o briefing não define, resolvidos pela opção mais simples:
 11. **`GET /services`**: o cliente vê só os ativos; técnico e admin veem todos (filtro opcional `?active=`).
 12. **Schemas Zod do front** duplicados em `web/src/lib/schemas.ts` (em vez de um pacote compartilhado), para manter os deploys de Render e Vercel independentes.
 13. **Disponibilidade**: blocos com início entre 07:00 e 22:00. Na grade do front: manhã 07–12, tarde 13–18, noite 19–22.
+14. **Valores dos serviços no seed** (o briefing não define): softwares R$ 120, hardwares R$ 180, vírus R$ 150, impressoras R$ 90, periféricos R$ 80, conectividade R$ 110, backup R$ 200, otimização do SO R$ 130, VPN R$ 160.
+15. **Testes**: o `globalSetup` aplica as migrations com `prisma migrate deploy` no banco de teste e cada suíte limpa as tabelas com `TRUNCATE`. Não usamos `migrate reset`.

@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+.pgdata
+uploads
+src/generated
+.env
+.env.test
+*.log

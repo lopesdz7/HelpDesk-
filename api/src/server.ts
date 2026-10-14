@@ -1,2 +1,6 @@
-// Ponto de entrada da API — implementado na fase 1.
-export {}
+import { app } from '@/app'
+import { env } from '@/env'
+
+app.listen(env.PORT, () => {
+  console.log(`API rodando na porta ${env.PORT}`)
+})

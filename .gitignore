@@ -12,3 +12,5 @@ api/uploads/*
 .vercel
 .impeccable/config.local.json
 .claude/settings.local.json
+api/.pgdata/
+api/src/generated/
