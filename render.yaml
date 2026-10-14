@@ -1,0 +1,32 @@
+# Blueprint do Render: API (Docker) + PostgreSQL gerenciado.
+# Render → New → Blueprint → aponte para este repositório.
+services:
+  - type: web
+    name: helpdesk-api
+    runtime: docker
+    rootDir: api
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: helpdesk-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 1d
+      - key: TZ_BUSINESS
+        value: America/Sao_Paulo
+      # Preencha com a URL do front na Vercel (ex.: https://helpdesk.vercel.app)
+      - key: CORS_ORIGIN
+        sync: false
+      # PORT é injetada pelo Render automaticamente.
+
+databases:
+  - name: helpdesk-db
+    plan: free
+    postgresMajorVersion: '16'
