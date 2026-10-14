@@ -9,7 +9,8 @@ type Schemas = { body?: ZodType; params?: ZodType; query?: ZodType }
  */
 export function validate(schemas: Schemas): RequestHandler {
   return (request, _response, next) => {
-    if (schemas.params) request.params = schemas.params.parse(request.params) as typeof request.params
+    if (schemas.params)
+      request.params = schemas.params.parse(request.params) as typeof request.params
     if (schemas.query) {
       // No Express 5 `req.query` é um getter; redefinimos a propriedade com o valor parseado.
       Object.defineProperty(request, 'query', {

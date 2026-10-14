@@ -192,11 +192,14 @@ describe('DELETE /profile', () => {
     expect(await prisma.ticket.count()).toBe(0)
   })
 
-  it.each(['technician', 'admin'] as const)('%s não pode excluir a própria conta (403)', async (role) => {
-    const { auth } = await createAuthenticated(role)
+  it.each(['technician', 'admin'] as const)(
+    '%s não pode excluir a própria conta (403)',
+    async (role) => {
+      const { auth } = await createAuthenticated(role)
 
-    const response = await request(app).delete('/profile').set(auth)
+      const response = await request(app).delete('/profile').set(auth)
 
-    expect(response.status).toBe(403)
-  })
+      expect(response.status).toBe(403)
+    },
+  )
 })

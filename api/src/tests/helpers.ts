@@ -52,7 +52,9 @@ export async function createAuthenticated(role: UserRole, overrides: UserOverrid
   return { user, auth: { Authorization: `Bearer ${tokenFor(user)}` } }
 }
 
-export function createService(overrides: { title?: string; price?: string; active?: boolean } = {}) {
+export function createService(
+  overrides: { title?: string; price?: string; active?: boolean } = {},
+) {
   sequence += 1
   return prisma.service.create({
     data: {

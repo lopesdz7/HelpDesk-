@@ -5,5 +5,8 @@ export function paginationArgs({ page, perPage }: Pagination) {
 }
 
 export function paginated<T>(data: T[], total: number, { page, perPage }: Pagination) {
-  return { data, meta: { page, perPage, total, totalPages: Math.max(1, Math.ceil(total / perPage)) } }
+  return {
+    data,
+    meta: { page, perPage, total, totalPages: Math.max(1, Math.ceil(total / perPage)) },
+  }
 }

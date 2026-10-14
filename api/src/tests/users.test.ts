@@ -13,7 +13,11 @@ describe('POST /users (cadastro de cliente)', () => {
     const response = await request(app).post('/users').send(body)
 
     expect(response.status).toBe(201)
-    expect(response.body).toMatchObject({ name: 'Maria Souza', email: 'maria@test.com', role: 'client' })
+    expect(response.body).toMatchObject({
+      name: 'Maria Souza',
+      email: 'maria@test.com',
+      role: 'client',
+    })
     expect(response.body).not.toHaveProperty('password')
 
     const stored = await prisma.user.findUniqueOrThrow({ where: { email: 'maria@test.com' } })

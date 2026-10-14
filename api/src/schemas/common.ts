@@ -2,7 +2,11 @@ import { z } from 'zod'
 
 export const idParamsSchema = z.object({ id: z.uuid('ID inválido.') })
 
-export const nameSchema = z.string().trim().min(2, 'O nome deve ter pelo menos 2 caracteres.').max(100)
+export const nameSchema = z
+  .string()
+  .trim()
+  .min(2, 'O nome deve ter pelo menos 2 caracteres.')
+  .max(100)
 export const emailSchema = z.email('E-mail inválido.').trim().toLowerCase()
 export const passwordSchema = z
   .string()
