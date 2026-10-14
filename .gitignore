@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.test
+.env.local
+*.log
+api/uploads/*
+!api/uploads/.gitkeep
+.DS_Store
+.vercel
+.impeccable/config.local.json
+.claude/settings.local.json
