@@ -1,4 +1,5 @@
 import { CircleCheckBig, CircleHelp, Clock2 } from 'lucide-react'
+import { useState } from 'react'
 import { cn } from '@/lib/cn'
 import { STATUS_LABEL } from '@/lib/format'
 import type { TicketStatus } from '@/lib/types'
@@ -23,16 +24,26 @@ type StatusBadgeProps = {
 }
 
 /**
- * Badge de status com ícone + texto. Trocar a `key` pelo status faz o React remontar o
- * elemento e disparar o flip 3D (CSS) quando o status muda — desligado em reduced-motion.
+ * Badge de status com ícone + texto. Quando o status muda, o badge faz um flip 3D em CSS
+ * (só na mudança, não no primeiro render; desligado em reduced-motion).
  */
 export function StatusBadge({ status, compact = false, className }: StatusBadgeProps) {
+  const [previous, setPrevious] = useState(status)
+  const [flips, setFlips] = useState(0)
+
+  // Estado derivado durante o render: conta as trocas de status.
+  if (status !== previous) {
+    setPrevious(status)
+    setFlips((count) => count + 1)
+  }
+
   const Icon = icons[status]
   return (
     <span
-      key={status}
+      key={flips}
       className={cn(
-        'inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full px-2 text-xs font-bold whitespace-nowrap motion-safe:animate-status-flip [transform-origin:center_top]',
+        'inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full px-2 text-xs font-bold whitespace-nowrap [transform-origin:center_top]',
+        flips > 0 && 'motion-safe:animate-status-flip',
         compact && 'max-md:w-7 max-md:justify-center max-md:px-0',
         styles[status],
         className,
